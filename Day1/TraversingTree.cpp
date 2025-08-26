@@ -1,6 +1,8 @@
 // Traversing binary tree
 
 #include<iostream>
+#include<queue>
+#include<vector>
 using namespace std;
 
 class Node{
@@ -63,6 +65,24 @@ void postOrder(Node *root){
   cout << root->data << " ";
 }
 
+void levelTraversal(Node *root){
+  queue<Node*>q;
+  cout << root->data << " ";
+  q.push(root);
+  while(!q.empty()){
+    Node *temp = q.front();
+    q.pop();
+    if(temp->left){
+    cout << temp->left->data << " ";
+    q.push(temp->left);
+    }
+    if(temp->right){
+      cout << temp->right->data << " ";
+      q.push(temp->right);
+    }
+  }
+}
+
 int main(){
   cout << "Enter the root element: ";
   // Tree Creation
@@ -79,4 +99,6 @@ int main(){
   cout << "Post Order: " << endl;
   postOrder(root);
   cout << endl;
+  cout << "Level Order: " << endl;
+  levelTraversal(root);
 }
